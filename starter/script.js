@@ -89,16 +89,26 @@ var upperCasedCharacters = [
 ];
 
 
-// Function to prompt user for password options
+
 function getPasswordOptions() {
-  alert("welcome to Yaseens password Generator! ")
-  alert(" Asnwer the prompts to get the password suited to your specificatuions and then click the 'Generate Password' button")
-  let chosenPasswordLength = prompt("length of password")
-  let passwordSpecialCharacters = confirm("should the password include special Characters  ?")
-  let passwordNumbers = confirm("should the password include numbers  ?")
-  let passwordUpper = confirm("should the password include uppercase letters ?")
-  let passwordLower = confirm("should the password include lowercase letters ?")
-  let allCharacters = "" 
+  alert("Welcome to Yaseen's Password Generator! Please choose a password length between 8 and 128 characters.");
+
+  let chosenPasswordLength;
+  do {
+    chosenPasswordLength = prompt("Length of password:");
+    if (chosenPasswordLength < 8 || chosenPasswordLength > 128) {
+      alert("Please enter a password length between 8 and 128 characters.");
+    }
+  } while (chosenPasswordLength < 8 || chosenPasswordLength > 128);
+
+  alert("Answer the prompts to customize your password:");
+
+  let passwordSpecialCharacters = confirm("Should the password include special characters?");
+  let passwordNumbers = confirm("Should the password include numbers?");
+  let passwordUpper = confirm("Should the password include uppercase letters?");
+  let passwordLower = confirm("Should the password include lowercase letters?");
+
+  let allCharacters = "";
 
   if (passwordSpecialCharacters) {
     allCharacters += specialCharacters.join('');

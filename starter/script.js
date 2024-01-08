@@ -111,6 +111,8 @@ function getPasswordOptions() {
   let allCharacters = "";
 
   if (passwordSpecialCharacters) {
+
+    
     allCharacters += specialCharacters.join('');
   }
   if (passwordNumbers) {

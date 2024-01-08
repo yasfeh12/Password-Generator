@@ -88,48 +88,53 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-alert("length of p")
-let chosenPasswordLength= prompt("length of password")
-let passwordSpecialCharacters= confirm("should the password include special Characters  ?")
-let passwordNumbers= confirm("should the password include numbers  ?")
-let passwordUpper= confirm("should the password include uppercase letters ?")
-let passwordLower=  confirm("should the password include lowercase letters ?")
-let allcharacters = specialCharacters + numericCharacters + lowerCasedCharacters + upperCasedCharacters 
+
 // Function to prompt user for password options
 function getPasswordOptions() {
+  alert("welcome to Yaseens password Generator! ")
+  alert(" Asnwer the prompts to get the password suited to your specificatuions and then click the 'Generate Password' button")
+  let chosenPasswordLength = prompt("length of password")
+  let passwordSpecialCharacters = confirm("should the password include special Characters  ?")
+  let passwordNumbers = confirm("should the password include numbers  ?")
+  let passwordUpper = confirm("should the password include uppercase letters ?")
+  let passwordLower = confirm("should the password include lowercase letters ?")
+  let allCharacters = "" 
 
-  alert("length of p")
-  let chosenPasswordLength= prompt("length of password")
-  let passwordSpecialCharacters= confirm("should the password include special Characters  ?")
-  let passwordNumbers= confirm("should the password include numbers  ?")
-  let passwordUpper= confirm("should the password include uppercase letters ?")
-  let passwordLower=  confirm("should the password include lowercase letters ?")
-  let allcharacters = specialCharacters + numericCharacters + lowerCasedCharacters + upperCasedCharacters 
+  if (passwordSpecialCharacters) {
+    allCharacters += specialCharacters.join('');
+  }
+  if (passwordNumbers) {
+    allCharacters += numericCharacters.join('');
+  }
+  if (passwordUpper) {
+    allCharacters += upperCasedCharacters.join('');
+  }
+  if (passwordLower) {
+    allCharacters += lowerCasedCharacters.join('');
+  }
+
+  return { length: chosenPasswordLength, characters: allCharacters };
 }
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 
 }
 
-// Function to generate password with user input
 function generatePassword() {
-  let password= "";
-  if (passwordSpecialCharacters) 
-  { password +=  specialCharacters[Math.floor(Math.random()*specialCharacters.length)]
+  let options = getPasswordOptions();
+  let password = '';
+
+  for (let i = 0; i < options.length; i++) {
+    password += getRandom(options.characters);
   }
-  else if (passwordNumbers) 
-  { password +=  passwordNumbers[Math.floor(Math.random()*passwordNumbers.length)]
-  }
-  else if (passwordNumbers) 
-  { password +=  passwordNumbers[Math.floor(Math.random()*passwordNumbers.length)]
-  }
-  else if (passwordNumbers) 
-  { password +=  passwordNumbers[Math.floor(Math.random()*passwordNumbers.length)]
-  }
+  
+  return password; 
 }
 
-
+console.log(generatePassword());
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
